@@ -1,25 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import PokeCard from './src/components/PokemonCard';
+import Navigator from './src/routes/mainStack';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <PokeCard />
-      <PokeCard />
-      <PokeCard />
-      <PokeCard />
-    </View>
-  );
+  return <Navigator />;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    maxHeight: 0
-  }
-});
+const styles = StyleSheet.create({});
+
+// continuar em https://youtu.be/cS4PgI3zBzY?t=530

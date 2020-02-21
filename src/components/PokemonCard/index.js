@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image, StyleSheet } from 'react-native';
-import { HitTestResultTypes } from 'expo/build/AR';
 
 import Type from './type';
-import type from './type';
 
 export default function PokemonCard() {
   return (
