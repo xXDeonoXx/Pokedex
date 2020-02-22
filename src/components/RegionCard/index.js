@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 15,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingTop: 5
   },
   regionName: {
     color: '#000',
