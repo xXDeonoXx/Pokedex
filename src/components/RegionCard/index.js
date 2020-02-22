@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
 
-export default function RegionCard() {
+export default function RegionCard(props) {
   return (
-    <View style={styles.body}>
-      <View style={styles.sideInfo}>
-        <Text style={styles.idRange}>0-151</Text>
-        <Text style={styles.regionName}>Kanto</Text>
+    <TouchableOpacity onPress={props.onPress}>
+      <View style={styles.body}>
+        <View style={styles.sideInfo}>
+          <Text style={styles.idRange}>0-151</Text>
+          <Text style={styles.regionName}>Kanto</Text>
+        </View>
+        <Image
+          style={styles.image}
+          source='https://ya-webdesign.com/transparent250_/pokemon-starters-png-1.png'
+        />
       </View>
-      <Image
-        style={styles.image}
-        source='https://ya-webdesign.com/transparent250_/pokemon-starters-png-1.png'
-      />
-    </View>
+    </TouchableOpacity>
   );
 }
 

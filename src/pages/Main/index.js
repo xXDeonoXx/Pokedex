@@ -3,18 +3,18 @@ import { View, Text } from 'react-native';
 import { StyleSheet } from 'react-native';
 import RegionCard from '../../components/RegionCard';
 
-const index = () => {
+export default function index({ navigation }) {
   return (
     <View>
       <View style={styles.container}>
-        <RegionCard />
-        <RegionCard />
-        <RegionCard />
-        <RegionCard />
+        <RegionCard
+          region='kanto'
+          onPress={() => navigation.navigate('Pokedex', { region: 'kanto' })}
+        />
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -26,5 +26,3 @@ const styles = StyleSheet.create({
     maxHeight: 0
   }
 });
-
-export default index;

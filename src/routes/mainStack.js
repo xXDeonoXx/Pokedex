@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import Main from '../pages/Main';
+import Pokedex from '../pages/Pokedex';
 
 const Stack = createStackNavigator();
 
@@ -29,7 +30,8 @@ export default function MainStack() {
           }
         }}
       >
-        <Stack.Screen name='Regions' component={Main} options={{}} />
+        <Stack.Screen name='Regions' component={Main} />
+        <Stack.Screen name='Pokedex' component={Pokedex} />
       </Stack.Navigator>
     </NavigationContainer>
   );
