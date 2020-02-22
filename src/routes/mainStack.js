@@ -1,14 +1,27 @@
-import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer } from 'react-navigation';
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 
 import Main from '../pages/Main';
 
-const screens = {
-  Main: {
-    screen: Main
-  }
-};
+const Stack = createStackNavigator();
 
-const MainStack = createStackNavigator(screens);
-
-export default createAppContainer(MainStack);
+export default function MainStack() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#f00000'
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold'
+          }
+        }}
+      >
+        <Stack.Screen name='Regions' component={Main} options={{}} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}

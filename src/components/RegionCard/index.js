@@ -5,8 +5,8 @@ export default function RegionCard() {
   return (
     <View style={styles.body}>
       <View style={styles.sideInfo}>
-        <Text style={styles.id}>0-151</Text>
-        <Text style={styles.name}>Kanto</Text>
+        <Text style={styles.idRange}>0-151</Text>
+        <Text style={styles.regionName}>Kanto</Text>
       </View>
       <Image
         style={styles.image}
@@ -17,15 +17,17 @@ export default function RegionCard() {
 }
 
 const styles = StyleSheet.create({
-  id: {
+  idRange: {
     color: '#000',
     fontSize: 15,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
-  name: {
+  regionName: {
     color: '#000',
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
   image: {
     width: 150,
@@ -36,11 +38,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    textAlign: 'center',
 
     borderRadius: 10,
-    marginBottom: 10,
-    margin: 10,
+    marginTop: 20,
+    marginLeft: 10,
+    marginRight: 10,
     shadowColor: '#000',
     shadowOffset: {
       width: 2,
