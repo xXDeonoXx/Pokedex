@@ -11,10 +11,38 @@ class pokeApiWrapper {
         break;
     }
 
-    const api = axios.create({ baseURL: 'https://pokeapi.co/api/v2/' });
-    const data = await api.get('pokemon?limit=151&offset=0');
-    return data.data.results;
+    const api = axios.create();
+    const data = await api.get(
+      'https://pokeapi.co/api/v2/pokemon?limit=151&offset=0'
+    );
+    const results = data.data.results;
+    console.log(results);
+    let pokemons = [];
+    await Promise.all(
+      results.map(async (entry, index) => {
+        let pokemonData = await axios.get(entry.url);
+        pokemonData = pokemonData.data;
+        // let pokemonSpecies = await axios.get(
+        //   'https://pokeapi.co/api/v2/pokemon-species/' + pokemonData.id
+        // );
+        pokemons[index] = {
+          id: pokemonData.id,
+          name: pokemonData.name,
+          sprites: pokemonData.sprites,
+          types: pokemonData.types,
+          color: 'color NAme'
+        };
+      })
+    );
+    return pokemons;
   }
 }
 
 export default new pokeApiWrapper();
+
+/**
+ *    id: 0,
+      name = '',
+      sprites = {},
+      types = [],
+ */

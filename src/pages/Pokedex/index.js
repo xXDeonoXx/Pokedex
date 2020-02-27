@@ -6,23 +6,38 @@ import api from '../../Services/pokeApiWrapper';
 
 export default function index(props) {
   const [pokemons, setPokemons] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadPokemons() {
-      const data = await api.getPokedexEntries(props.region);
+      let data = await api.getPokedexEntries(props.region);
       setPokemons(data);
-      console.log(data);
     }
     loadPokemons();
   }, []);
 
-  return (
-    <View style={styles.container}>
-      {pokemons.map(pokemon => {
-        return <PokemonCard key={pokemon.name} />;
-      })}
-    </View>
-  );
+  useEffect(() => {
+    if (pokemons) {
+      console.log('carregando');
+      setLoading(false);
+    }
+  }, [pokemons]);
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <Text>Carregando...</Text>
+      </View>
+    );
+  }
+
+  return <View style={styles.container}>{mapPokemons()}</View>;
+
+  function mapPokemons() {
+    return pokemons.map((pokemon, index) => {
+      return <PokemonCard key={index} id={index} pokemon={pokemon} />;
+    });
+  }
 }
 
 const styles = StyleSheet.create({
