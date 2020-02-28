@@ -5,7 +5,12 @@ import Type from './type';
 
 export default function PokemonCard(props) {
   return (
-    <View style={[styles.body, { backgroundColor: '#fff' }]}>
+    <View
+      style={[
+        styles.body,
+        { backgroundColor: setPokemonColor(props.pokemon.color) }
+      ]}
+    >
       <View style={styles.sideInfo}>
         <Text style={styles.id}>#{props.pokemon.id}</Text>
         <Text style={styles.name}>{props.pokemon.name}</Text>
@@ -23,6 +28,26 @@ function mapTypes(types) {
   return types.map((type, index) => {
     return <Type name={type.type.name} key={index} />;
   });
+}
+
+function setPokemonColor(color) {
+  const colors = {
+    green: '#32a852',
+    orange: '#e68c2c'
+  };
+
+  let pokemonColor = '';
+
+  switch (color) {
+    case 'green':
+      pokemonColor = colors.green;
+      break;
+
+    default:
+      pokemonColor = color;
+      break;
+  }
+  return pokemonColor;
 }
 
 const styles = StyleSheet.create({
@@ -51,7 +76,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     margin: 10,
     width: 270,
-    height: 150
+    height: 150,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 3
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65
   },
   sideInfo: {
     justifyContent: 'center',

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { FlatList, View, Text } from 'react-native';
 import { StyleSheet } from 'react-native';
 import PokemonCard from '../../components/PokemonCard';
 import api from '../../Services/pokeApiWrapper';
@@ -31,6 +31,7 @@ export default function index(props) {
     );
   }
 
+  // Render principal da tela
   return <View style={styles.container}>{mapPokemons()}</View>;
 
   function mapPokemons() {
