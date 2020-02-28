@@ -11,17 +11,11 @@ export default function index(props) {
   useEffect(() => {
     async function loadPokemons() {
       let data = await api.getPokedexEntries(props.region);
-      setPokemons(data);
+      await setPokemons(data);
+      await setLoading(false);
     }
     loadPokemons();
   }, []);
-
-  useEffect(() => {
-    if (pokemons) {
-      console.log('carregando');
-      setLoading(false);
-    }
-  }, [pokemons]);
 
   if (loading) {
     return (
@@ -32,7 +26,18 @@ export default function index(props) {
   }
 
   // Render principal da tela
-  return <View style={styles.container}>{mapPokemons()}</View>;
+  // return <View style={styles.container}>{mapPokemons()}</View>;
+  return (
+    <FlatList
+      data={pokemons}
+      renderItem={({ item: pokemon, index }) => (
+        <PokemonCard id={pokemon.id.toString()} pokemon={pokemon} />
+      )}
+      keyExtractor={pokemon => pokemon.id.toString()}
+      numColumns='4'
+      columnWrapperStyle={styles.list}
+    />
+  );
 
   function mapPokemons() {
     return pokemons.map((pokemon, index) => {
@@ -49,5 +54,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     maxHeight: 0
+  },
+  list: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   }
 });

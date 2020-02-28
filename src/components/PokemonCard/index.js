@@ -32,8 +32,9 @@ function mapTypes(types) {
 
 function setPokemonColor(color) {
   const colors = {
-    green: '#32a852',
-    orange: '#e68c2c'
+    green: '#43c466',
+    red: '#f2655c',
+    blue: '#5cb3f2'
   };
 
   let pokemonColor = '';
@@ -41,6 +42,14 @@ function setPokemonColor(color) {
   switch (color) {
     case 'green':
       pokemonColor = colors.green;
+      break;
+
+    case 'red':
+      pokemonColor = colors.red;
+      break;
+
+    case 'blue':
+      pokemonColor = colors.blue;
       break;
 
     default:
