@@ -13,7 +13,7 @@ export default function PokemonCard(props) {
     >
       <View style={styles.sideInfo}>
         <Text style={styles.id}>#{props.pokemon.id}</Text>
-        <Text style={styles.name}>{props.pokemon.name}</Text>
+        <Text style={styles.name}>{capitalizeString(props.pokemon.name)}</Text>
         <View style={styles.types}>{mapTypes(props.pokemon.types)}</View>
       </View>
       <Image
@@ -30,11 +30,21 @@ function mapTypes(types) {
   });
 }
 
+function capitalizeString(s) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 function setPokemonColor(color) {
   const colors = {
     green: '#43c466',
     red: '#f2655c',
-    blue: '#5cb3f2'
+    blue: '#5cb3f2',
+    white: '#f0f0f0',
+    brown: '#A0522D',
+    purple: '#8E44AD',
+    yellow: '#FFD700',
+    pink: '#FFCBDB',
+    gray: '#a0a0a0'
   };
 
   let pokemonColor = '';
@@ -50,6 +60,30 @@ function setPokemonColor(color) {
 
     case 'blue':
       pokemonColor = colors.blue;
+      break;
+
+    case 'white':
+      pokemonColor = colors.white;
+      break;
+
+    case 'brown':
+      pokemonColor = colors.brown;
+      break;
+
+    case 'purple':
+      pokemonColor = colors.purple;
+      break;
+
+    case 'yellow':
+      pokemonColor = colors.yellow;
+      break;
+
+    case 'pink':
+      pokemonColor = colors.pink;
+      break;
+
+    case 'gray':
+      pokemonColor = colors.gray;
       break;
 
     default:
