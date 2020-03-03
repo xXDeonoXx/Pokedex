@@ -4,68 +4,56 @@ class pokeApiWrapper {
   constructor() {}
 
   async getPokedexEntries(region) {
-    let offset = 0;
-    let limit = 0;
+    let pokedexId = 0;
 
     switch (region) {
       case 'kanto':
-        offset = 1;
-        limit = 151;
+        pokedexId = 2;
         break;
       case 'johto':
-        offset = 151;
-        limit = 251;
+        pokedexId = 3;
         break;
       case 'hoenn':
-        offset = 251;
-        limit = 370;
+        pokedexId = 4;
         break;
       case 'sinnoh':
-        offset = 386;
-        limit = 493;
+        pokedexId = 5;
         break;
       case 'unova':
-        offset = 493;
-        limit = 649;
+        pokedexId = 6;
         break;
-      case 'kalos':
-        offset = 649;
-        limit = 721;
+      case 'kalos-central':
+        pokedexId = 12;
         break;
-      case 'alola':
-        offset = 721;
-        limit = 809;
+      case 'kalos-coastal':
+        pokedexId = 13;
         break;
-      case 'galar':
-        offset = 809;
-        limit = 890;
+      case 'kalos-mountain':
+        pokedexId = 14;
         break;
     }
 
     const api = axios.create();
-    const data = await api.get(
-      'https://pokeapi.co/api/v2/pokemon?limit=' + limit + '&offset=' + offset
+    const pokedexInfo = await api.get(
+      'https://pokeapi.co/api/v2/pokedex/' + pokedexId
     );
-    const results = data.data.results;
+    const entries = pokedexInfo.data.pokemon_entries;
+
     let pokemons = [];
     await Promise.all(
-      results.map(async (entry, index) => {
-        let pokemonData = await axios.get(entry.url);
-        pokemonData = pokemonData.data;
-        // Existem pokemons com ids invalidas, os de mega evolução por exemnplo, case seja, retorna
-        //TA BUGADO ISSO AQUI, TEM QUE CHECAR
-        if (pokemonData.id > 1000) return;
-        console.log('id:' + pokemonData.id + '/ Name: ' + pokemonData.name);
-        let pokemonSpecies = await axios.get(
-          'https://pokeapi.co/api/v2/pokemon-species/' + pokemonData.id
-        );
-        pokemons[index] = {
-          id: index + 1,
-          name: pokemonData.name,
-          sprites: pokemonData.sprites,
-          types: pokemonData.types,
-          color: pokemonSpecies.data.color.name
-        };
+      entries.map(async (entry, index) => {
+        axios.get(entry.pokemon_species.url).then(async pokemon_species => {
+          let pokemon_data = await axios.get(
+            'https://pokeapi.co/api/v2/pokemon/' + pokemon_species.data.id
+          );
+          pokemons[index] = {
+            id: entry.entry_number,
+            name: pokemon_data.data.name,
+            sprites: pokemon_data.data.sprites,
+            types: pokemon_data.data.types,
+            color: pokemon_species.data.color.name
+          };
+        });
       })
     );
     console.log(pokemons);

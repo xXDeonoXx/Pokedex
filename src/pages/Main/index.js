@@ -38,22 +38,28 @@ export default function index({ navigation }) {
           onPress={() => navigation.navigate('Pokedex', { region: 'unova' })}
         />
         <RegionCard
-          region='Kalos'
-          idRange='650-721'
+          region='Kalos Central'
+          idRange='???'
           cover='https://ya-webdesign.com/transparent250_/pokemon-starters-png-3.png'
-          onPress={() => navigation.navigate('Pokedex', { region: 'kalos' })}
+          onPress={() =>
+            navigation.navigate('Pokedex', { region: 'kalos-central' })
+          }
         />
         <RegionCard
-          region='Alola'
-          idRange='722-809'
-          cover='https://ya-webdesign.com/transparent250_/pokemon-starters-png-9.png'
-          onPress={() => navigation.navigate('Pokedex', { region: 'alola' })}
+          region='Kalos Coastal'
+          idRange='???'
+          cover='https://ya-webdesign.com/transparent250_/pokemon-starters-png-3.png'
+          onPress={() =>
+            navigation.navigate('Pokedex', { region: 'kalos-coastal' })
+          }
         />
         <RegionCard
-          region='Galar'
-          idRange='810-890'
-          cover='http://casadocarvalho.net/wp-content/uploads/2019/02/starters-1024x701.png'
-          onPress={() => navigation.navigate('Pokedex', { region: 'galar' })}
+          region='Kalos Mountain'
+          idRange='???'
+          cover='https://ya-webdesign.com/transparent250_/pokemon-starters-png-3.png'
+          onPress={() =>
+            navigation.navigate('Pokedex', { region: 'kalos-mountain' })
+          }
         />
       </View>
     </View>
