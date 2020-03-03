@@ -8,8 +8,52 @@ export default function index({ navigation }) {
     <View>
       <View style={styles.container}>
         <RegionCard
-          region='kanto'
+          region='Kanto'
+          idRange='0-151'
+          cover='https://ya-webdesign.com/transparent250_/pokemon-starters-png-1.png'
           onPress={() => navigation.navigate('Pokedex', { region: 'kanto' })}
+        />
+        <RegionCard
+          region='Johto'
+          idRange='152-251'
+          cover='https://i.ya-webdesign.com/images/pokemon-starters-png-14.png'
+          onPress={() => navigation.navigate('Pokedex', { region: 'johto' })}
+        />
+        <RegionCard
+          region='Hoenn'
+          idRange='252-386'
+          cover='https://ya-webdesign.com/transparent250_/pokemon-starters-png-10.png'
+          onPress={() => navigation.navigate('Pokedex', { region: 'hoenn' })}
+        />
+        <RegionCard
+          region='Sinnoh'
+          idRange='387-493'
+          cover='https://ya-webdesign.com/transparent250_/pokemon-starters-png-7.png'
+          onPress={() => navigation.navigate('Pokedex', { region: 'sinnoh' })}
+        />
+        <RegionCard
+          region='Unova'
+          idRange='494-649'
+          cover='https://ya-webdesign.com/transparent250_/pokemon-starters-png-16.png'
+          onPress={() => navigation.navigate('Pokedex', { region: 'unova' })}
+        />
+        <RegionCard
+          region='Kalos'
+          idRange='650-721'
+          cover='https://ya-webdesign.com/transparent250_/pokemon-starters-png-3.png'
+          onPress={() => navigation.navigate('Pokedex', { region: 'kalos' })}
+        />
+        <RegionCard
+          region='Alola'
+          idRange='722-809'
+          cover='https://ya-webdesign.com/transparent250_/pokemon-starters-png-9.png'
+          onPress={() => navigation.navigate('Pokedex', { region: 'alola' })}
+        />
+        <RegionCard
+          region='Galar'
+          idRange='810-890'
+          cover='http://casadocarvalho.net/wp-content/uploads/2019/02/starters-1024x701.png'
+          onPress={() => navigation.navigate('Pokedex', { region: 'galar' })}
         />
       </View>
     </View>

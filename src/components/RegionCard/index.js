@@ -6,13 +6,10 @@ export default function RegionCard(props) {
     <TouchableOpacity onPress={props.onPress}>
       <View style={styles.body}>
         <View style={styles.sideInfo}>
-          <Text style={styles.idRange}>0-151</Text>
-          <Text style={styles.regionName}>Kanto</Text>
+          <Text style={styles.idRange}>{props.idRange}</Text>
+          <Text style={styles.regionName}>{props.region}</Text>
         </View>
-        <Image
-          style={styles.image}
-          source='https://ya-webdesign.com/transparent250_/pokemon-starters-png-1.png'
-        />
+        <Image style={styles.image} source={props.cover} />
       </View>
     </TouchableOpacity>
   );
@@ -33,7 +30,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   image: {
-    width: 150,
+    width: 200,
     height: 100
   },
   body: {
@@ -47,7 +44,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
     width: 150,
-    height: 150,
+    height: 170,
     shadowColor: '#000',
     shadowOffset: {
       width: 2,

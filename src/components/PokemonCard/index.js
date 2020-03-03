@@ -44,7 +44,8 @@ function setPokemonColor(color) {
     purple: '#8E44AD',
     yellow: '#FFD700',
     pink: '#FFCBDB',
-    gray: '#a0a0a0'
+    gray: '#a0a0a0',
+    black: '#2b2b2b'
   };
 
   let pokemonColor = '';
@@ -84,6 +85,10 @@ function setPokemonColor(color) {
 
     case 'gray':
       pokemonColor = colors.gray;
+      break;
+
+    case 'black':
+      pokemonColor = colors.black;
       break;
 
     default:

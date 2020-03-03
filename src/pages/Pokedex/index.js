@@ -10,7 +10,7 @@ export default function index(props) {
 
   useEffect(() => {
     async function loadPokemons() {
-      let data = await api.getPokedexEntries(props.region);
+      let data = await api.getPokedexEntries(props.route.params.region);
       await setPokemons(data);
       await setLoading(false);
     }
@@ -34,7 +34,7 @@ export default function index(props) {
         <PokemonCard id={pokemon.id.toString()} pokemon={pokemon} />
       )}
       keyExtractor={pokemon => pokemon.id.toString()}
-      numColumns='4'
+      numColumns='2'
       columnWrapperStyle={styles.list}
     />
   );
