@@ -1,11 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import { StyleSheet } from 'react-native';
 import RegionCard from '../../components/RegionCard';
 
 export default function index({ navigation }) {
   return (
-    <View>
+    <ImageBackground
+      source={require('../../../assets/pokeball.jpeg')}
+      style={styles.imageBackground}
+      imageStyle={{ opacity: 0.3 }}
+    >
       <View style={styles.container}>
         <RegionCard
           region='Kanto'
@@ -62,17 +66,21 @@ export default function index({ navigation }) {
           }
         />
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    maxHeight: 0
+    maxHeight: 0,
+    backgroundColor: 'rgba(255,0,0,0.5)'
+  },
+  imageBackground: {
+    width: '100%',
+    height: '100%'
   }
 });

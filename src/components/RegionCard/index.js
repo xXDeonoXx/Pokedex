@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
 
 export default function RegionCard(props) {
