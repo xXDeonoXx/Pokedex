@@ -16,17 +16,25 @@ export default function MainStack() {
         screenOptions={{
           headerBackground: props => (
             <LinearGradient
-              colors={['#38ef7d', '#11998e']}
-              style={{ padding: 30, alignItems: 'center', borderRadius: 0 }}
+              colors={['#ff4b4b', '#f72f2f']}
+              style={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: 0,
+                height: 65
+              }}
               start={[1, 0]}
             />
           ),
-          headerStyle: {
-            backgroundColor: '#f00000'
-          },
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold'
+          },
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontFamily: 'monospace',
+            fontSize: 25
           }
         }}
       >

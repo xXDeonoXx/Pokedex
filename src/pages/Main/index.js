@@ -76,11 +76,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    maxHeight: 0,
-    backgroundColor: 'rgba(255,0,0,0.5)'
+    maxHeight: 0
   },
   imageBackground: {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)'
   }
 });

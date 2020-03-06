@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const type = props => {
+export default function Type(props) {
   return (
     <View>
       <Text style={styles.type}>{props.name}</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   type: {
@@ -20,8 +20,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     marginRight: 5,
     fontSize: 15,
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
+    fontFamily: 'monospace'
   }
 });
-
-export default type;

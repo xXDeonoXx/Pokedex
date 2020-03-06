@@ -21,13 +21,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
-    paddingTop: 5
+    paddingTop: 5,
+    fontFamily: 'monospace'
   },
   regionName: {
     color: '#000',
     fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'monospace'
   },
   image: {
     width: 200,

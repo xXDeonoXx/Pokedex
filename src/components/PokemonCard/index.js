@@ -101,7 +101,8 @@ function setPokemonColor(color) {
 const styles = StyleSheet.create({
   id: {
     color: '#fff',
-    fontSize: 15
+    fontSize: 15,
+    fontFamily: 'monospace'
   },
   name: {
     color: '#fff',
@@ -109,7 +110,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: 5, height: 1 },
-    textShadowRadius: 10
+    textShadowRadius: 10,
+    fontFamily: 'monospace'
   },
   image: {
     width: 150,
