@@ -42,7 +42,7 @@ function setPokemonColor(color) {
     white: '#f0f0f0',
     brown: '#A0522D',
     purple: '#8E44AD',
-    yellow: '#FFD700',
+    yellow: '#edc907',
     pink: '#FFCBDB',
     gray: '#a0a0a0',
     black: '#2b2b2b'
