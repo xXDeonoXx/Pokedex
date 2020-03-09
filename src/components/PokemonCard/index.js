@@ -1,26 +1,30 @@
-import React, { Component } from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import React from 'react';
+import { TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
 
 import Type from './type';
 
 export default function PokemonCard(props) {
   return (
-    <View
-      style={[
-        styles.body,
-        { backgroundColor: setPokemonColor(props.pokemon.color) }
-      ]}
+    <TouchableOpacity
+      onPress={() =>
+        props.navigation.navigate('PokemonInfo', { pokemon: props.pokemon })
+      }
     >
-      <View style={styles.sideInfo}>
-        <Text style={styles.id}>#{props.pokemon.id}</Text>
-        <Text style={styles.name}>{capitalizeString(props.pokemon.name)}</Text>
-        <View style={styles.types}>{mapTypes(props.pokemon.types)}</View>
+      <View style={[styles.body, { backgroundColor: props.pokemon.color }]}>
+        <View style={styles.sideInfo}>
+          <Text style={styles.id}>#{props.pokemon.id}</Text>
+          <Text style={styles.name}>
+            {capitalizeString(props.pokemon.name)}
+          </Text>
+          <View style={styles.types}>{mapTypes(props.pokemon.types)}</View>
+        </View>
+        <Image
+          style={styles.image}
+          // para usar uma imagem com qualidade melhor, usar props.pokemon.defaultImage
+          source={props.pokemon.sprites.front_default}
+        />
       </View>
-      <Image
-        style={styles.image}
-        source={props.pokemon.sprites.front_default}
-      />
-    </View>
+    </TouchableOpacity>
   );
 }
 
@@ -32,70 +36,6 @@ function mapTypes(types) {
 
 function capitalizeString(s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
-}
-
-function setPokemonColor(color) {
-  const colors = {
-    green: '#43c466',
-    red: '#f2655c',
-    blue: '#5cb3f2',
-    white: '#f0f0f0',
-    brown: '#A0522D',
-    purple: '#8E44AD',
-    yellow: '#edc907',
-    pink: '#FFCBDB',
-    gray: '#a0a0a0',
-    black: '#2b2b2b'
-  };
-
-  let pokemonColor = '';
-
-  switch (color) {
-    case 'green':
-      pokemonColor = colors.green;
-      break;
-
-    case 'red':
-      pokemonColor = colors.red;
-      break;
-
-    case 'blue':
-      pokemonColor = colors.blue;
-      break;
-
-    case 'white':
-      pokemonColor = colors.white;
-      break;
-
-    case 'brown':
-      pokemonColor = colors.brown;
-      break;
-
-    case 'purple':
-      pokemonColor = colors.purple;
-      break;
-
-    case 'yellow':
-      pokemonColor = colors.yellow;
-      break;
-
-    case 'pink':
-      pokemonColor = colors.pink;
-      break;
-
-    case 'gray':
-      pokemonColor = colors.gray;
-      break;
-
-    case 'black':
-      pokemonColor = colors.black;
-      break;
-
-    default:
-      pokemonColor = color;
-      break;
-  }
-  return pokemonColor;
 }
 
 const styles = StyleSheet.create({

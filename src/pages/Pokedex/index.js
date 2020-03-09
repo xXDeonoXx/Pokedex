@@ -8,6 +8,10 @@ export default function index(props) {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  props.navigation.setOptions({
+    title: capitalizeString(props.route.params.region)
+  });
+
   useEffect(() => {
     async function loadPokemons() {
       let data = await api.getPokedexEntries(props.route.params.region);
@@ -31,8 +35,6 @@ export default function index(props) {
     );
   }
 
-  // Render principal da tela
-  // return <View style={styles.container}>{mapPokemons()}</View>;
   return (
     <ImageBackground
       source={require('../../../assets/pokeball.jpeg')}
@@ -42,7 +44,11 @@ export default function index(props) {
       <FlatList
         data={pokemons}
         renderItem={({ item: pokemon, index }) => (
-          <PokemonCard id={pokemon.id.toString()} pokemon={pokemon} />
+          <PokemonCard
+            id={pokemon.id.toString()}
+            pokemon={pokemon}
+            navigation={props.navigation}
+          />
         )}
         keyExtractor={pokemon => pokemon.id.toString()}
         numColumns='2'
@@ -51,10 +57,8 @@ export default function index(props) {
     </ImageBackground>
   );
 
-  function mapPokemons() {
-    return pokemons.map((pokemon, index) => {
-      return <PokemonCard key={index} id={index} pokemon={pokemon} />;
-    });
+  function capitalizeString(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
   }
 }
 

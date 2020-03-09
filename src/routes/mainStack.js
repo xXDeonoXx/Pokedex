@@ -6,6 +6,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import Main from '../pages/Main';
 import Pokedex from '../pages/Pokedex';
+import PokemonInfo from '../pages/PokemonInfo';
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,7 @@ export default function MainStack() {
       >
         <Stack.Screen name='Regions' component={Main} />
         <Stack.Screen name='Pokedex' component={Pokedex} />
+        <Stack.Screen name='PokemonInfo' component={PokemonInfo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

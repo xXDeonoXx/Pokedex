@@ -39,7 +39,6 @@ function setTypeBackgroundColor(type) {
   };
 
   let typeColor = '';
-  console.log(type);
   switch (type) {
     case 'bug':
       typeColor = types.bug;
