@@ -47,12 +47,6 @@ class pokeApiWrapper {
             'https://pokeapi.co/api/v2/pokemon/' + pokemon_species.data.id
           );
 
-          // Separa
-          // pokemon_species.data.flavor_text_entries.map(flavor_text => {
-          //   if (flavor_text.language.name == 'en')
-          //     return flavor_text.flavor_text;
-          // });
-
           pokemons[index] = {
             id: entry.entry_number,
             name: this.capitalizeString(pokemon_data.data.name),
