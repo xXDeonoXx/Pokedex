@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FlatList, View, Text, ImageBackground } from 'react-native';
 import { StyleSheet } from 'react-native';
 import PokemonCard from '../../components/PokemonCard';
@@ -7,6 +7,12 @@ import api from '../../Services/pokeApiWrapper';
 export default function index(props) {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [viewableItems, setViewableItems] = useState([]);
+
+  const onViewRef = useRef(viewableItems => {
+    setViewableItems(viewableItems.viewableItems);
+  });
+  const viewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 });
 
   props.navigation.setOptions({
     title: capitalizeString(props.route.params.region)
@@ -48,11 +54,18 @@ export default function index(props) {
             id={pokemon.id.toString()}
             pokemon={pokemon}
             navigation={props.navigation}
+            indexInList={index}
           />
         )}
         keyExtractor={pokemon => pokemon.id.toString()}
         numColumns='2'
         columnWrapperStyle={styles.list}
+        onViewableItemsChanged={onViewRef.current}
+        viewabilityConfig={viewConfigRef.current}
+        windowSize={2}
+        initialListSize={12}
+        initialNumToRender={12}
+        maxToRenderPerBatch={4}
       />
     </ImageBackground>
   );

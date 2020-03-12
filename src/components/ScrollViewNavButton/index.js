@@ -16,7 +16,10 @@ export default function index(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ff7d81'
+    backgroundColor: '#ff7d81',
+    borderBottomColor: '#00d9a8',
+    borderBottomWidth: 5,
+    paddingBottom: 5
   },
   text: {
     color: '#000',

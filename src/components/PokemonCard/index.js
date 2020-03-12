@@ -1,16 +1,40 @@
-import React from 'react';
-import { TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  Animated
+} from 'react-native';
 
 import Type from './type';
 
 export default function PokemonCard(props) {
+  const [viewOpacity, setViewOpacity] = useState(new Animated.Value(0));
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    Animated.timing(viewOpacity, {
+      delay: 200,
+      toValue: 1,
+      duration: 1200
+    }).start();
+  }, [visible]);
+
   return (
     <TouchableOpacity
       onPress={() =>
         props.navigation.navigate('PokemonInfo', { pokemon: props.pokemon })
       }
     >
-      <View style={[styles.body, { backgroundColor: props.pokemon.color }]}>
+      <Animated.View
+        style={[
+          styles.body,
+          { backgroundColor: props.pokemon.color },
+          { opacity: viewOpacity }
+        ]}
+      >
         <View style={styles.sideInfo}>
           <Text style={styles.id}>#{props.pokemon.id}</Text>
           <Text style={styles.name}>
@@ -23,7 +47,7 @@ export default function PokemonCard(props) {
           // para usar uma imagem com qualidade melhor, usar props.pokemon.defaultImage
           source={props.pokemon.sprites.front_default}
         />
-      </View>
+      </Animated.View>
     </TouchableOpacity>
   );
 }
@@ -59,7 +83,6 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   body: {
-    backgroundColor: '#32a852',
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderRadius: 10,
