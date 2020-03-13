@@ -10,7 +10,9 @@ import {
 
 import Type from './type';
 
-export default function PokemonCard(props) {
+export default class PokemonCard extends React.PureComponent {
+  render(){
+    
   const [viewOpacity, setViewOpacity] = useState(new Animated.Value(0));
   const [visible, setVisible] = useState(true);
 
@@ -45,22 +47,24 @@ export default function PokemonCard(props) {
         <Image
           style={styles.image}
           // para usar uma imagem com qualidade melhor, usar props.pokemon.defaultImage
-          source={props.pokemon.sprites.front_default}
+          source={{uri: props.pokemon.sprites.front_default}}
         />
       </Animated.View>
     </TouchableOpacity>
   );
-}
-
-function mapTypes(types) {
+  }
+  
+mapTypes(types) {
   return types.map((type, index) => {
     return <Type name={type.type.name} key={index} />;
   });
 }
 
-function capitalizeString(s) {
+capitalizeString(s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
+}
+
 
 const styles = StyleSheet.create({
   id: {
@@ -101,9 +105,11 @@ const styles = StyleSheet.create({
   },
   sideInfo: {
     justifyContent: 'center',
-    marginLeft: '10px'
+    marginLeft: 10
   },
   types: {
     flexDirection: 'row'
   }
 });
+
+

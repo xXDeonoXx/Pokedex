@@ -30,7 +30,7 @@ export default function index(props) {
 
     // </ImageBackground>
     <View style={[styles.container, { backgroundColor: pokemon.color }]}>
-      <Image style={styles.pokemonImage} source={pokemon.defaultImage} />
+      <Image style={styles.pokemonImage} source={{uri: pokemon.defaultImage}} />
       <Text style={styles.name}>{pokemon.name}</Text>
       <View style={styles.info}>
         <View style={styles.buttonContainer}>

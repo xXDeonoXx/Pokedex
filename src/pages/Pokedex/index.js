@@ -62,7 +62,7 @@ export default function index(props) {
         columnWrapperStyle={styles.list}
         onViewableItemsChanged={onViewRef.current}
         viewabilityConfig={viewConfigRef.current}
-        windowSize={2}
+        windowSize={8}
         initialListSize={12}
         initialNumToRender={12}
         maxToRenderPerBatch={4}

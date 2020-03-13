@@ -9,7 +9,7 @@ export default function RegionCard(props) {
           <Text style={styles.idRange}>{props.idRange}</Text>
           <Text style={styles.regionName}>{props.region}</Text>
         </View>
-        <Image style={styles.image} source={props.cover} />
+        <Image style={styles.image} source={{uri: props.cover}} />
       </View>
     </TouchableOpacity>
   );
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   sideInfo: {
     justifyContent: 'center',
-    marginLeft: '10px'
+    marginLeft: 10
   },
   types: {
     flexDirection: 'row'
