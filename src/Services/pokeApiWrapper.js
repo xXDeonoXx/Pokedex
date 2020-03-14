@@ -37,16 +37,17 @@ class pokeApiWrapper {
     const pokedexInfo = await api.get(
       'https://pokeapi.co/api/v2/pokedex/' + pokedexId
     );
+    console.log('pegou informações da pokedex');
     const entries = pokedexInfo.data.pokemon_entries;
 
     let pokemons = [];
     await Promise.all(
       entries.map(async (entry, index) => {
-        axios.get(entry.pokemon_species.url).then(async pokemon_species => {
+        api.get(entry.pokemon_species.url).then(async pokemon_species => {
+          console.log('Fez uma req');
           let pokemon_data = await axios.get(
             'https://pokeapi.co/api/v2/pokemon/' + pokemon_species.data.id
           );
-
           pokemons[index] = {
             id: entry.entry_number,
             name: this.capitalizeString(pokemon_data.data.name),
@@ -66,7 +67,6 @@ class pokeApiWrapper {
         });
       })
     );
-    console.log(pokemons);
     return pokemons;
   }
 

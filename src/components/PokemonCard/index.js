@@ -11,60 +11,71 @@ import {
 import Type from './type';
 
 export default class PokemonCard extends React.PureComponent {
-  render(){
-    
-  const [viewOpacity, setViewOpacity] = useState(new Animated.Value(0));
-  const [visible, setVisible] = useState(true);
+  state = {
+    viewOpacity: new Animated.Value(0)
+  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      viewOpacity: new Animated.Value(0)
+    };
+  }
 
-  useEffect(() => {
-    Animated.timing(viewOpacity, {
+  render() {
+    const animatedStyles = {
+      opacity: this.state.viewOpacity
+    };
+
+    Animated.timing(this.state.viewOpacity, {
       delay: 200,
       toValue: 1,
       duration: 1200
     }).start();
-  }, [visible]);
 
-  return (
-    <TouchableOpacity
-      onPress={() =>
-        props.navigation.navigate('PokemonInfo', { pokemon: props.pokemon })
-      }
-    >
-      <Animated.View
-        style={[
-          styles.body,
-          { backgroundColor: props.pokemon.color },
-          { opacity: viewOpacity }
-        ]}
+    return (
+      <TouchableOpacity
+        onPress={() =>
+          this.props.navigation.navigate('PokemonInfo', {
+            pokemon: this.props.pokemon
+          })
+        }
       >
-        <View style={styles.sideInfo}>
-          <Text style={styles.id}>#{props.pokemon.id}</Text>
-          <Text style={styles.name}>
-            {capitalizeString(props.pokemon.name)}
-          </Text>
-          <View style={styles.types}>{mapTypes(props.pokemon.types)}</View>
-        </View>
-        <Image
-          style={styles.image}
-          // para usar uma imagem com qualidade melhor, usar props.pokemon.defaultImage
-          source={{uri: props.pokemon.sprites.front_default}}
-        />
-      </Animated.View>
-    </TouchableOpacity>
-  );
+        <Animated.View
+          style={[
+            styles.body,
+            { backgroundColor: this.props.pokemon.color },
+            animatedStyles
+          ]}
+        >
+          <View style={styles.sideInfo}>
+            <Text style={styles.id}>#{this.props.pokemon.id}</Text>
+            <Text style={styles.name}>
+              {capitalizeString(this.props.pokemon.name)}
+            </Text>
+            <View style={styles.types}>
+              {mapTypes(this.props.pokemon.types)}
+            </View>
+          </View>
+          <Image
+            style={styles.image}
+            // para usar uma imagem com qualidade melhor, usar props.pokemon.defaultImage
+            source={{ uri: this.props.pokemon.sprites.front_default }}
+          />
+        </Animated.View>
+      </TouchableOpacity>
+    );
+
+    function mapTypes(types) {
+      return types.map((type, index) => {
+        return <Type name={type.type.name} key={index} />;
+      });
+    }
+
+    function capitalizeString(s) {
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
   }
-  
-mapTypes(types) {
-  return types.map((type, index) => {
-    return <Type name={type.type.name} key={index} />;
-  });
 }
-
-capitalizeString(s) {
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
-}
-
 
 const styles = StyleSheet.create({
   id: {
@@ -111,5 +122,3 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   }
 });
-
-
