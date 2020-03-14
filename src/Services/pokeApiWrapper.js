@@ -44,28 +44,28 @@ class pokeApiWrapper {
     let pokemons = [];
     await Promise.all(
       entries.map(async (entry, index) => {
-        api.get(entry.pokemon_species.url).then(async pokemon_species => {
-          console.log('Fez uma req');
-          let pokemon_data = await axios.get(
-            'https://pokeapi.co/api/v2/pokemon/' + pokemon_species.data.id
-          );
-          pokemons[index] = {
-            id: entry.entry_number,
-            name: this.capitalizeString(pokemon_data.data.name),
-            sprites: pokemon_data.data.sprites,
-            defaultImage:
-              'https://pokeres.bastionbot.org/images/pokemon/' +
-              pokemon_species.data.id +
-              '.png',
-            types: pokemon_data.data.types,
-            color: this.setPokemonColor(pokemon_species.data.color.name),
-            description: pokemon_species.data.flavor_text_entries.find(
-              flavor_text => {
-                return flavor_text.language.name == 'en';
-              }
-            ).flavor_text
-          };
-        });
+        console.log('Fez uma req de pokedex entries');
+        let pokemon_species = await api.get(entry.pokemon_species.url);
+        console.log('Fez uma req de pokemon entry');
+        let pokemon_data = await axios.get(
+          'https://pokeapi.co/api/v2/pokemon/' + pokemon_species.data.id
+        );
+        pokemons[index] = {
+          id: entry.entry_number,
+          name: this.capitalizeString(pokemon_data.data.name),
+          sprites: pokemon_data.data.sprites,
+          defaultImage:
+            'https://pokeres.bastionbot.org/images/pokemon/' +
+            pokemon_species.data.id +
+            '.png',
+          types: pokemon_data.data.types,
+          color: this.setPokemonColor(pokemon_species.data.color.name),
+          description: pokemon_species.data.flavor_text_entries.find(
+            flavor_text => {
+              return flavor_text.language.name == 'en';
+            }
+          ).flavor_text
+        };
       })
     );
     return pokemons;
