@@ -57,7 +57,7 @@ export default function index(props) {
             indexInList={index}
           />
         )}
-        keyExtractor={pokemon => pokemon.id.toString()}
+        keyExtractor={pokemon => pokemon.name.toString()}
         numColumns='2'
         columnWrapperStyle={styles.list}
         onViewableItemsChanged={onViewRef.current}

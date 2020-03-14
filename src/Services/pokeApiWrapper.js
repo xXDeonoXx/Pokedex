@@ -34,6 +34,7 @@ class pokeApiWrapper {
     }
 
     const api = axios.create();
+    console.log('pedindo informações da pokedex');
     const pokedexInfo = await api.get(
       'https://pokeapi.co/api/v2/pokedex/' + pokedexId
     );
