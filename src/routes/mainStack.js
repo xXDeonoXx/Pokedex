@@ -23,7 +23,7 @@ export default function MainStack() {
                 left: 0,
                 right: 0,
                 top: 0,
-                height: 65
+                height: '100%'
               }}
               start={[1, 0]}
             />

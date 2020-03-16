@@ -23,9 +23,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#000',
-    fontSize: 20,
+    fontSize: 16,
     fontFamily: 'monospace',
-    padding: 8,
+    paddingTop: 4,
     textAlign: 'center'
   }
 });

@@ -22,15 +22,11 @@ export default function index(props) {
   });
 
   return (
-    // <ImageBackground
-    //   source={require('../../../assets/pokeball.jpeg')}
-    //   style={styles.imageBackground}
-    //   imageStyle={{ opacity: 0.3 }}
-    // >
-
-    // </ImageBackground>
     <View style={[styles.container, { backgroundColor: pokemon.color }]}>
-      <Image style={styles.pokemonImage} source={{uri: pokemon.defaultImage}} />
+      <Image
+        style={styles.pokemonImage}
+        source={{ uri: pokemon.defaultImage }}
+      />
       <Text style={styles.name}>{pokemon.name}</Text>
       <View style={styles.info}>
         <View style={styles.buttonContainer}>
@@ -58,7 +54,7 @@ export default function index(props) {
           pagingEnabled={true}
           scrollEnabled={true}
           ref={scrollRef}
-          contentContainerStyle={{ flex: 1, flexGrow: 1 }}
+          contentContainerStyle={{ flexGrow: 1 }}
         >
           <View style={styles.scrollItem}>
             <Text style={styles.description}>{pokemon.description}</Text>

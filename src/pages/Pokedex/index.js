@@ -14,7 +14,7 @@ export default function index(props) {
 
   useEffect(() => {
     async function loadPokemons() {
-      let data = await api.getPokedexEntries(props.route.params.region);
+      let data = await api.getAllPokemonFromPokedex(props.route.params.region);
       await setPokemons(data);
       await setLoading(false);
     }
