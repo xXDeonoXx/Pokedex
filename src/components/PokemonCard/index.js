@@ -34,6 +34,7 @@ export default class PokemonCard extends React.PureComponent {
 
     return (
       <TouchableOpacity
+        style={styles.container}
         onPress={() =>
           this.props.navigation.navigate('PokemonInfo', {
             pokemon: this.props.pokemon
@@ -78,6 +79,7 @@ export default class PokemonCard extends React.PureComponent {
 }
 
 const styles = StyleSheet.create({
+  container: {},
   id: {
     color: '#fff',
     fontSize: 15,
@@ -93,8 +95,8 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace'
   },
   image: {
-    width: 150,
-    height: 150,
+    width: '50%',
+    height: '100%',
     alignItems: 'flex-end'
   },
   body: {

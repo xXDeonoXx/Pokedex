@@ -9,7 +9,7 @@ export default function RegionCard(props) {
           <Text style={styles.idRange}>{props.idRange}</Text>
           <Text style={styles.regionName}>{props.region}</Text>
         </View>
-        <Image style={styles.image} source={{uri: props.cover}} />
+        <Image style={styles.image} source={{ uri: props.cover }} />
       </View>
     </TouchableOpacity>
   );
@@ -37,10 +37,6 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: '#fff',
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-
     borderRadius: 10,
     marginTop: 20,
     marginLeft: 10,
@@ -54,9 +50,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-
     elevation: 7,
-    width: 250
+    width: 250,
+    alignItems: 'center'
   },
   sideInfo: {
     justifyContent: 'center',

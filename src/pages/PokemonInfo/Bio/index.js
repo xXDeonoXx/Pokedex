@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     padding: 8
   },
   scroll: {
-    backgroundColor: '#dfdfdf',
+    backgroundColor: '#f3f3f3',
     borderRadius: 15
   }
 });
