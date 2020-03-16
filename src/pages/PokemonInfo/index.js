@@ -8,8 +8,10 @@ import {
   Dimensions
 } from 'react-native';
 import { StyleSheet } from 'react-native';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 import ScrollNavButton from '../../components/ScrollViewNavButton';
+import Bio from './Bio';
 
 export default function index(props) {
   const [scrollPos, setScrollPos] = useState(0);
@@ -29,63 +31,22 @@ export default function index(props) {
       />
       <Text style={styles.name}>{pokemon.name}</Text>
       <View style={styles.info}>
-        <View style={styles.buttonContainer}>
-          <ScrollNavButton option={0} title={'Bio'} onPress={navigateOnInfo} />
-          <ScrollNavButton
-            option={1}
-            title={'Stats'}
-            onPress={navigateOnInfo}
-          />
-          <ScrollNavButton
-            option={2}
-            title={'Abilities'}
-            onPress={navigateOnInfo}
-          />
-          <ScrollNavButton
-            option={3}
-            title={'Moves'}
-            onPress={navigateOnInfo}
-          />
-        </View>
-
-        <ScrollView
-          style={styles.scrollView}
-          horizontal={true}
-          pagingEnabled={true}
-          scrollEnabled={true}
-          ref={scrollRef}
-          contentContainerStyle={{ flexGrow: 1 }}
+        <ScrollableTabView
+          tabBarUnderlineColor='#fff'
+          tabBarUnderlineStyle={{ backgroundColor: '#000' }}
+          tabBarBackgroundColor='#fff'
+          tabBarActiveTextColor='#000'
+          tabBarInactiveTextColor='#88b0ac'
+          styles={styles.scroll}
         >
-          <View style={styles.scrollItem}>
-            <Text style={styles.description}>{pokemon.description}</Text>
-          </View>
-          <View style={styles.scrollItem}>
-            <Text style={styles.description}>
-              AQUI FICAM AS HABILIDADES, MOROU ?
-            </Text>
-          </View>
-          <View style={styles.scrollItem}>
-            <Text style={styles.description}>
-              AQUI É A TERCEIRA OPÇÃO KKKKKKKK
-            </Text>
-          </View>
-          <View style={styles.scrollItem}>
-            <Text style={styles.description}>
-              AQUI É A ULTIMA OPÇÃO MEU NEGO
-            </Text>
-          </View>
-        </ScrollView>
+          <Bio tabLabel='Bio' {...pokemon} />
+          <Bio tabLabel='Stats' {...pokemon} />
+          <Bio tabLabel='Moves' {...pokemon} />
+          <Bio tabLabel='Evolutions' {...pokemon} />
+        </ScrollableTabView>
       </View>
     </View>
   );
-
-  function navigateOnInfo(option) {
-    return scrollRef.current.scrollTo({
-      x: Dimensions.get('window').width * option,
-      y: 0,
-      animated: true
-    });
-  }
 }
 
 const styles = StyleSheet.create({
@@ -103,7 +64,7 @@ const styles = StyleSheet.create({
   },
   info: {
     borderRadius: 30,
-    marginTop: 20,
+    marginTop: 10,
     backgroundColor: '#fff',
     width: '100%',
     height: '100%'
@@ -114,24 +75,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     fontFamily: 'monospace',
-    paddingBottom: 10,
-    paddingTop: 10
+    paddingBottom: 1,
+    paddingTop: 5
   },
-  description: {
-    color: '#000',
-    fontSize: 20,
-    fontFamily: 'monospace',
-    padding: 12
-  },
-  scrollView: { flex: 1, width: '100%', height: '100%' },
-  scrollItem: {
-    width: Dimensions.get('window').width
-  },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: '#f0f',
-    maxHeight: 35
-  }
+  scroll: {}
 });
