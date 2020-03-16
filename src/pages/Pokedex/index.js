@@ -7,12 +7,6 @@ import api from '../../Services/pokeApiWrapper';
 export default function index(props) {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [viewableItems, setViewableItems] = useState([]);
-
-  const onViewRef = useRef(viewableItems => {
-    setViewableItems(viewableItems.viewableItems);
-  });
-  const viewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 });
 
   props.navigation.setOptions({
     title: capitalizeString(props.route.params.region)
@@ -60,8 +54,6 @@ export default function index(props) {
         keyExtractor={pokemon => pokemon.name.toString()}
         numColumns='2'
         columnWrapperStyle={styles.list}
-        onViewableItemsChanged={onViewRef.current}
-        viewabilityConfig={viewConfigRef.current}
         windowSize={5}
         initialListSize={12}
         initialNumToRender={12}

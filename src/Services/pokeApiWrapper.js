@@ -1,9 +1,24 @@
 import axios from 'axios';
 
 class pokeApiWrapper {
-  constructor() {}
+  constructor() {
+    this.url = {
+      pokedexInfo: 'https://pokeapi.co/api/v2/pokedex/',
+      pokemonInfo: 'https://pokeapi.co/api/v2/pokemon/'
+    };
+  }
 
-  async getPokedexEntries(region) {
+  async getAllPokemonFromPokedex(region) {
+    // Busca todos os pokemons presentes na pokedex informada
+    const pokedexEntries = await this.getPokedexInfo(region);
+
+    // Array que vai conter todas informações sobre os pokemon da pokedex escolhida
+    const pokemons = await this.getPokemonsInfo(pokedexEntries);
+
+    return pokemons;
+  }
+
+  async getPokedexInfo(region) {
     let pokedexId = 0;
 
     switch (region) {
@@ -33,23 +48,26 @@ class pokeApiWrapper {
         break;
     }
 
-    const api = axios.create();
+    // Pega informações da pokedex escolhida
     console.log('pedindo informações da pokedex');
-    const pokedexInfo = await api.get(
-      'https://pokeapi.co/api/v2/pokedex/' + pokedexId
-    );
+    const pokedexInfo = await axios.get(`${this.url.pokedexInfo}${pokedexId}`);
     console.log('pegou informações da pokedex');
-    const entries = pokedexInfo.data.pokemon_entries;
+    return pokedexInfo.data.pokemon_entries;
+  }
 
+  async getPokemonsInfo(entries) {
     let pokemons = [];
+
     await Promise.all(
       entries.map(async (entry, index) => {
-        console.log('Fez uma req de pokedex entries');
-        let pokemon_species = await api.get(entry.pokemon_species.url);
-        console.log('Fez uma req de pokemon entry');
+        // Abaixo são feitas duas chamadas, pois precisamos de informações tanto do endpoint pokemon_species como do pokemon
+        let pokemon_species = await axios.get(entry.pokemon_species.url);
         let pokemon_data = await axios.get(
-          'https://pokeapi.co/api/v2/pokemon/' + pokemon_species.data.id
+          `${this.url.pokemonInfo}${pokemon_species.data.id}`
         );
+
+        // Para cada item de entries, adiciona as informações de seus respectivos pokemons no indice correto
+
         pokemons[index] = {
           id: entry.entry_number,
           name: this.capitalizeString(pokemon_data.data.name),
