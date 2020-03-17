@@ -1,22 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  View,
-  Text,
-  Button,
-  Image,
-  ScrollView,
-  Dimensions
-} from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { StyleSheet } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
-import ScrollNavButton from '../../components/ScrollViewNavButton';
+// Componenentes
 import Bio from './Bio';
+import Type from '../../components/PokemonCard/type';
 
 export default function index(props) {
-  const [scrollPos, setScrollPos] = useState(0);
-  const scrollRef = useRef();
-
   const pokemon = props.route.params.pokemon;
 
   props.navigation.setOptions({
@@ -30,6 +21,7 @@ export default function index(props) {
         source={{ uri: pokemon.defaultImage }}
       />
       <Text style={styles.name}>{pokemon.name}</Text>
+      <View style={styles.types}>{mapTypes(pokemon.types)}</View>
       <View style={styles.info}>
         <ScrollableTabView
           tabBarUnderlineColor='#fff'
@@ -47,6 +39,12 @@ export default function index(props) {
       </View>
     </View>
   );
+}
+
+function mapTypes(types) {
+  return types.map((type, index) => {
+    return <Type name={type.type.name} key={index} />;
+  });
 }
 
 const styles = StyleSheet.create({
@@ -78,5 +76,8 @@ const styles = StyleSheet.create({
     paddingBottom: 1,
     paddingTop: 5
   },
-  scroll: {}
+  scroll: {},
+  types: {
+    flexDirection: 'row'
+  }
 });

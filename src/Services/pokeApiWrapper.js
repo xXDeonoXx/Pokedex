@@ -19,34 +19,18 @@ class pokeApiWrapper {
   }
 
   async getPokedexInfo(region) {
-    let pokedexId = 0;
+    const regions = {
+      kanto: 2,
+      johto: 3,
+      hoenn: 4,
+      sinnoh: 5,
+      unova: 6,
+      'kalos-central': 12,
+      'kalos-coastal': 13,
+      'kalos-mountain': 14
+    };
 
-    switch (region) {
-      case 'kanto':
-        pokedexId = 2;
-        break;
-      case 'johto':
-        pokedexId = 3;
-        break;
-      case 'hoenn':
-        pokedexId = 4;
-        break;
-      case 'sinnoh':
-        pokedexId = 5;
-        break;
-      case 'unova':
-        pokedexId = 6;
-        break;
-      case 'kalos-central':
-        pokedexId = 12;
-        break;
-      case 'kalos-coastal':
-        pokedexId = 13;
-        break;
-      case 'kalos-mountain':
-        pokedexId = 14;
-        break;
-    }
+    let pokedexId = regions[region];
 
     // Pega informações da pokedex escolhida
     console.log('pedindo informações da pokedex');

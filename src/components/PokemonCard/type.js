@@ -38,72 +38,13 @@ function setTypeBackgroundColor(type) {
     water: '#517fee'
   };
 
-  let typeColor = '';
-  switch (type) {
-    case 'bug':
-      typeColor = types.bug;
-      break;
-    case 'dark':
-      typeColor = types.dark;
-      break;
-    case 'dragon':
-      typeColor = types.dragon;
-      break;
-    case 'electric':
-      typeColor = types.electric;
-      break;
-    case 'fairy':
-      typeColor = types.fairy;
-      break;
-    case 'fighting':
-      typeColor = types.fighting;
-      break;
-    case 'fire':
-      typeColor = types.fire;
-      break;
-    case 'flying':
-      typeColor = types.flying;
-      break;
-    case 'ghost':
-      typeColor = types.ghost;
-      break;
-    case 'grass':
-      typeColor = types.grass;
-      break;
-    case 'ground':
-      typeColor = types.ground;
-      break;
-    case 'ice':
-      typeColor = types.ice;
-      break;
-    case 'normal':
-      typeColor = types.normal;
-      break;
-    case 'poison':
-      typeColor = types.poison;
-      break;
-    case 'psychic':
-      typeColor = types.psychic;
-      break;
-    case 'rock':
-      typeColor = types.rock;
-      break;
-    case 'steel':
-      typeColor = types.steel;
-      break;
-    case 'water':
-      typeColor = types.water;
-      break;
+  let typeColor = types[type] || type;
 
-    default:
-      typeColor = type;
-      break;
-  }
   return typeColor;
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: { paddingRight: 5 },
   type: {
     color: '#fff',
     backgroundColor: '#000',
