@@ -5,6 +5,8 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 // Componenentes
 import Bio from './Bio';
+import Stats from './Stats';
+
 import Type from '../../components/PokemonCard/type';
 
 export default function index(props) {
@@ -32,7 +34,7 @@ export default function index(props) {
           styles={styles.scroll}
         >
           <Bio tabLabel='Bio' {...pokemon} />
-          <Bio tabLabel='Stats' {...pokemon} />
+          <Stats tabLabel='Stats' {...pokemon} />
           <Bio tabLabel='Moves' {...pokemon} />
           <Bio tabLabel='Evolutions' {...pokemon} />
         </ScrollableTabView>

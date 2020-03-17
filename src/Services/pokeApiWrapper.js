@@ -66,7 +66,9 @@ class pokeApiWrapper {
             flavor_text => {
               return flavor_text.language.name == 'en';
             }
-          ).flavor_text
+          ).flavor_text,
+          stats: pokemon_data.data.stats,
+          moves: pokemon_data.data.moves
         };
       })
     );
