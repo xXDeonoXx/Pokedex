@@ -11,7 +11,7 @@ export default function index(props) {
         </Text>
         <Text style={styles.textInfo}>{props.base_stat}</Text>
       </View>
-      <Text style={styles.statBar}>==========</Text>
+      <View style={[styles.statBar, { width: props.base_stat * 2 }]} />
     </>
   );
 }
@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     margin: 8
   },
   statBar: {
-    fontSize: 15,
-    color: '#000',
-    paddingLeft: 8
+    height: 20,
+    backgroundColor: '#ff80c0',
+    marginLeft: 8
   }
 });

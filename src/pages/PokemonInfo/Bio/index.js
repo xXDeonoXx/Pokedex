@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 export default function index(props) {
   return (
     <View style={styles.container}>
-      <View style={{ height: 220 }}>
+      <View style={{ height: 200 }}>
         <ScrollView
           style={styles.scroll}
           contentContainerStyle={{ flexGrow: 1 }}
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     padding: 8
   },
   scroll: {
-    backgroundColor: '#f3f3f3',
-    borderRadius: 15
+    borderRadius: 10
   }
 });

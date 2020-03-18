@@ -3,13 +3,19 @@ import { View, Text, ScrollView } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 export default function index(props) {
-    return (
-      <View style={styles.container}>       
-          <Text style={styles.name}>{capitalizeString(props.name)}</Text> 
-          <Text style={styles.level}>{props.levelLearned}</Text>   
-          <Text style={styles.method}>{props.learnMethod}</Text>
+  return (
+    <View style={styles.container}>
+      <View style={styles.item}>
+        <Text style={styles.name}>{capitalizeString(props.name)}</Text>
       </View>
-    )
+      <View style={styles.item}>
+        <Text style={styles.level}>{props.levelLearned}</Text>
+      </View>
+      <View style={styles.item}>
+        <Text style={styles.method}>{props.learnMethod}</Text>
+      </View>
+    </View>
+  );
 }
 
 function capitalizeString(s) {
@@ -17,33 +23,30 @@ function capitalizeString(s) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      padding: 5,
-      backgroundColor: '#fff',
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'space-around'
-    },
-    name: {
-      color: '#000',
-      fontSize: 15,
-      fontFamily: 'monospace',
-      padding: 2,
-      textAlign: 'center'
-    },
-    level: {
-      color: '#000',
-      fontSize: 15,
-      fontFamily: 'monospace',
-      padding: 2,
-
-    },
-    method: {
-      color: '#000',
-      fontSize: 15,
-      fontFamily: 'monospace',
-      padding: 2,
-      textAlign: 'center'
-    },    
-  });
-  
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  item: {
+    width: '34%'
+  },
+  name: {
+    color: '#000',
+    fontSize: 15,
+    fontFamily: 'monospace',
+    textAlign: 'center'
+  },
+  level: {
+    color: '#000',
+    fontSize: 15,
+    fontFamily: 'monospace',
+    textAlign: 'center'
+  },
+  method: {
+    color: '#000',
+    fontSize: 15,
+    fontFamily: 'monospace',
+    textAlign: 'center'
+  }
+});
